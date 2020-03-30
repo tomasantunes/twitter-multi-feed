@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Twitter Multi Feed</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='fonts/fontawesome/css/all.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/easy.css') }}">
+	<style>
+		.feed {
+			height: 100%;
+			width: 22%;
+			padding: 1%;
+			float: left;
+		}
+
+		.tweet {
+			min-height: 75px;
+			padding: 10px;
+		}
+
+		.tweet:nth-child(even) {
+			background: #BBB;
+		}
+			
+	</style>
+</head>
+<body>
+		<div class="row">
+			
+			{% for user in users %}
+				<div class="feed">
+					<h2>{{ user.name }}</h2>
+					{% for tweet in user.tweets %}
+						<div class="tweet">
+							<p>{{ tweet }}</p>
+						</div>
+					{% endfor %}
+				</div>
+			{% endfor %}
+			
+		</div>
+	<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+	<script>
+		setTimeout(function() {
+			location.reload();
+		}, 300000)
+	</script>
+</body>
+</html>
